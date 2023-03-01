@@ -1,4 +1,6 @@
-﻿using DAL;
+﻿
+
+using DAL;
 using Models;
 
 namespace BLL
@@ -8,7 +10,12 @@ namespace BLL
         public void Inserir(Usuario _usuario)
         {
             ValidarDados(_usuario);
-            //TODO: Validar se já existe um usuário com este nome.
+
+            Usuario usuario = new Usuario();
+            usuario = BuscarPorNomeUsuario(_usuario.NomeUsuario);
+            if (usuario.NomeUsuario == _usuario.NomeUsuario)
+                throw new Exception("Já existe um usuário com este nome");
+
             UsuarioDAL usuarioDAL = new UsuarioDAL();
             usuarioDAL.Inserir(_usuario);
         }
