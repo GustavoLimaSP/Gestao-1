@@ -68,10 +68,6 @@ namespace DAL
                         usuario.Email = rd["Email"].ToString();
                         usuario.Ativo = Convert.ToBoolean(rd["Ativo"]);
                     }
-                    else
-                    {
-                        throw new Exception("Usuário não encontrado.");
-                    }
                 }
                 return usuario;
             }
@@ -96,7 +92,7 @@ namespace DAL
             {
                 cn.ConnectionString = Conexao.StringDeConexao;
                 cmd.Connection = cn;
-                cmd.CommandText = @"SELECT Id, Nome, CPF, Email, Ativo 
+                cmd.CommandText = @"SELECT Id, Nome, CPF, Email, Ativo, NomeUsuario 
                                     FROM Usuario";
                 cmd.CommandType = System.Data.CommandType.Text;
                 cn.Open();
@@ -112,7 +108,9 @@ namespace DAL
                         usuario.CPF = rd["CPF"].ToString();
                         usuario.Email = rd["Email"].ToString();
                         usuario.Ativo = Convert.ToBoolean(rd["Ativo"]);
-
+                        
+                        GrupoUsuarioDAL grupoUsuarioDAL = new GrupoUsuarioDAL();
+                        usuario.GrupoUsuarios = grupoUsuarioDAL.BuscarPorIdUsuario(usuario.Id);
                         usuarios.Add(usuario);
                     }
                 }

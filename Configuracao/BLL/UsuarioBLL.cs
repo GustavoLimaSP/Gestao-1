@@ -7,9 +7,9 @@ namespace BLL
 {
     public class UsuarioBLL
     {
-        public void Inserir(Usuario _usuario)
+        public void Inserir(Usuario _usuario, string _confirmacaoDeSenha)
         {
-            ValidarDados(_usuario);
+            ValidarDados(_usuario, _confirmacaoDeSenha);
 
             Usuario usuario = new Usuario();
             usuario = BuscarPorNomeUsuario(_usuario.NomeUsuario);
@@ -36,7 +36,7 @@ namespace BLL
         {
 
         }
-        private static void ValidarDados(Usuario _usuario)
+        private static void ValidarDados(Usuario _usuario, string _confirmacaoDeSenha)
         {
             if (_usuario.NomeUsuario.Length <= 3 || _usuario.NomeUsuario.Length >= 50)
                 throw new Exception("O nome de usuário deve ter mais de três caracteres.");
@@ -49,6 +49,9 @@ namespace BLL
 
             if (_usuario.Senha.Length < 7 || _usuario.Senha.Length > 11)
                 throw new Exception("A senha deve ter entre 7 e 11 caracteres.");
+
+            if (_confirmacaoDeSenha != _usuario.Senha)
+                throw new Exception("O campo senha e a confirmação de senha não são iguais.");
         }
         public void Excluir(int _id)
         {
