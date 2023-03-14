@@ -27,14 +27,22 @@ namespace BLL
             UsuarioDAL usuarioDAL = new UsuarioDAL();
             return usuarioDAL.BuscarPorNomeUsuario(_nomeUsuario);
         }
+        public Usuario BuscarPorId(int _id)
+        {
+            UsuarioDAL usuarioDAL=new UsuarioDAL();
+            return usuarioDAL.BuscarPorId(_id);
+        }
         public List<Usuario> BuscarTodos()
         {
             UsuarioDAL usuarioDAL = new UsuarioDAL();
             return usuarioDAL.BuscarTodos();
         }
-        public void Alterar(Usuario _usuario)
+        public void Alterar(Usuario _usuario, string _confirmacaoDeSenha)
         {
+            ValidarDados(_usuario, _confirmacaoDeSenha);
 
+            UsuarioDAL usuarioDAL = new UsuarioDAL();
+            usuarioDAL.Alterar(_usuario);
         }
         private static void ValidarDados(Usuario _usuario, string _confirmacaoDeSenha)
         {
