@@ -26,5 +26,16 @@ namespace WindowsFormsAppPrincipal
             }
             buttonBuscar_Click(sender, e);
         }
+
+        private void buttonAlterar_Click(object sender, System.EventArgs e)
+        {
+            int id = ((Usuario)usuarioBindingSource.Current).Id;
+
+            using (FormCadastroUsuario frm = new FormCadastroUsuario(true, id))
+            {
+                frm.ShowDialog();
+            }
+            buttonBuscar_Click(sender, e);
+        }
     }
 }

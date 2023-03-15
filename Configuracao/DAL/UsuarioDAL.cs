@@ -160,7 +160,29 @@ namespace DAL
         }
         public void Excluir(int _id)
         {
+            SqlConnection cn = new SqlConnection();
 
+            try
+            {
+                cn.ConnectionString = Conexao.StringDeConexao;
+                SqlCommand cmd = new SqlCommand();
+                cmd.Connection = cn;
+                cmd.CommandText = @"DELETE FROM Usuario WHERE Id = @Id";
+
+                cmd.CommandType = System.Data.CommandType.Text;
+                cmd.Parameters.AddWithValue("@Id", _id);
+
+                cn.Open();
+                cmd.ExecuteNonQuery();
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Ocorreu um erro ao tentar excluir um usuário no banco: " + ex.Message);
+            }
+            finally
+            {
+                cn.Close();
+            }
         }
 
         public Usuario BuscarPorId(int _id)
@@ -173,7 +195,7 @@ namespace DAL
             {
                 cn.ConnectionString = Conexao.StringDeConexao;
                 cmd.Connection = cn;
-                cmd.CommandText = @"SELECT Id, Nome, CPF, Email, Ativo
+                cmd.CommandText = @"SELECT Id, Nome, CPF, Email, Ativo, NomeUsuario
                                     FROM Usuario WHERE Id = @Id";
 
                 cmd.Parameters.AddWithValue("@Id", _id);

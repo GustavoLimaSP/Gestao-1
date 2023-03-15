@@ -52,7 +52,7 @@ namespace BLL
             if (_usuario.NomeUsuario.Contains(" "))
                 throw new Exception("O nome de usuário não pode conter espaço");
 
-            if (_usuario.Senha.Contains("1234567"))
+             if (_usuario.Senha.Contains("1234567"))
                 throw new Exception("Não é permitido um número sequencial.");
 
             if (_usuario.Senha.Length < 7 || _usuario.Senha.Length > 11)
