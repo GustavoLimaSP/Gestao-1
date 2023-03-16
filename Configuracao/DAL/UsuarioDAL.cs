@@ -225,5 +225,10 @@ namespace DAL
                 cn.Close();
             }
         }
+
+        public void AdicionarGrupo(int _idUsuario, int _idGrupoUsuario)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

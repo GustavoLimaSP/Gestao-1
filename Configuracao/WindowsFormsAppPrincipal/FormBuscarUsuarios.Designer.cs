@@ -45,7 +45,7 @@
             this.buttonAlterar = new System.Windows.Forms.Button();
             this.buttonAdicionarUsuario = new System.Windows.Forms.Button();
             this.buttonExcluirUsuario = new System.Windows.Forms.Button();
-            this.buttonAlterarGrupoUsuario = new System.Windows.Forms.Button();
+            this.buttonAdicionarGrupoUsuario = new System.Windows.Forms.Button();
             this.buttonExcluirGrupoUsuario = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.usuarioBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.usuarioDataGridView)).BeginInit();
@@ -222,16 +222,18 @@
             this.buttonExcluirUsuario.TabIndex = 5;
             this.buttonExcluirUsuario.Text = "Excluir";
             this.buttonExcluirUsuario.UseVisualStyleBackColor = true;
+            this.buttonExcluirUsuario.Click += new System.EventHandler(this.buttonExcluirUsuario_Click);
             // 
-            // buttonAlterarGrupoUsuario
+            // buttonAdicionarGrupoUsuario
             // 
-            this.buttonAlterarGrupoUsuario.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.buttonAlterarGrupoUsuario.Location = new System.Drawing.Point(1033, 12);
-            this.buttonAlterarGrupoUsuario.Name = "buttonAlterarGrupoUsuario";
-            this.buttonAlterarGrupoUsuario.Size = new System.Drawing.Size(75, 23);
-            this.buttonAlterarGrupoUsuario.TabIndex = 5;
-            this.buttonAlterarGrupoUsuario.Text = "Adicionar";
-            this.buttonAlterarGrupoUsuario.UseVisualStyleBackColor = true;
+            this.buttonAdicionarGrupoUsuario.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.buttonAdicionarGrupoUsuario.Location = new System.Drawing.Point(1033, 12);
+            this.buttonAdicionarGrupoUsuario.Name = "buttonAdicionarGrupoUsuario";
+            this.buttonAdicionarGrupoUsuario.Size = new System.Drawing.Size(75, 23);
+            this.buttonAdicionarGrupoUsuario.TabIndex = 5;
+            this.buttonAdicionarGrupoUsuario.Text = "Adicionar";
+            this.buttonAdicionarGrupoUsuario.UseVisualStyleBackColor = true;
+            this.buttonAdicionarGrupoUsuario.Click += new System.EventHandler(this.buttonAdicionarGrupoUsuario_Click);
             // 
             // buttonExcluirGrupoUsuario
             // 
@@ -249,7 +251,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1203, 422);
             this.Controls.Add(this.buttonExcluirGrupoUsuario);
-            this.Controls.Add(this.buttonAlterarGrupoUsuario);
+            this.Controls.Add(this.buttonAdicionarGrupoUsuario);
             this.Controls.Add(this.buttonExcluirUsuario);
             this.Controls.Add(this.buttonAdicionarUsuario);
             this.Controls.Add(this.buttonAlterar);
@@ -281,7 +283,7 @@
         private System.Windows.Forms.Button buttonAlterar;
         private System.Windows.Forms.Button buttonAdicionarUsuario;
         private System.Windows.Forms.Button buttonExcluirUsuario;
-        private System.Windows.Forms.Button buttonAlterarGrupoUsuario;
+        private System.Windows.Forms.Button buttonAdicionarGrupoUsuario;
         private System.Windows.Forms.Button buttonExcluirGrupoUsuario;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn1;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn2;

@@ -1,6 +1,5 @@
 ﻿using BLL;
 using Models;
-using System.Collections.Generic;
 using System.Windows.Forms;
 
 namespace WindowsFormsAppPrincipal
@@ -14,7 +13,7 @@ namespace WindowsFormsAppPrincipal
 
         private void buttonBuscar_Click(object sender, System.EventArgs e)
         {
-            UsuarioBLL usuarioBLL = new UsuarioBLL();            
+            UsuarioBLL usuarioBLL = new UsuarioBLL();
             usuarioBindingSource.DataSource = usuarioBLL.BuscarTodos();
         }
 
@@ -36,6 +35,35 @@ namespace WindowsFormsAppPrincipal
                 frm.ShowDialog();
             }
             buttonBuscar_Click(sender, e);
+        }
+
+        private void buttonExcluirUsuario_Click(object sender, System.EventArgs e)
+        {
+            if (usuarioBindingSource.Count <= 0)
+            {
+                MessageBox.Show("Não existe registro para ser excluído.");
+                return;
+            }
+
+            if (MessageBox.Show("Deseja realmente excluir este registro?", "Atenção", MessageBoxButtons.YesNo) == DialogResult.No)
+                return;
+
+            int id = ((Usuario)usuarioBindingSource.Current).Id;
+            new UsuarioBLL().Excluir(id);
+
+            MessageBox.Show("Registro excluído com sucesso!");
+            buttonBuscar_Click(null, null);
+        }
+
+        private void buttonAdicionarGrupoUsuario_Click(object sender, System.EventArgs e)
+        {
+            using (FormConsultarGrupoUsuario frm = new FormConsultarGrupoUsuario())
+            {
+                frm.ShowDialog();
+                UsuarioBLL usuarioBLL = new UsuarioBLL();
+                int idUsuario = ((Usuario)usuarioBindingSource.Current).Id;
+                usuarioBLL.AdicionarGrupo(idUsuario, frm.Id);
+            }
         }
     }
 }
