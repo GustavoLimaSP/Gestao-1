@@ -66,9 +66,11 @@ namespace BLL
             UsuarioDAL usuarioDAL = new UsuarioDAL();
             usuarioDAL.Excluir(_id);
         }
-
         public void AdicionarGrupo(int _idUsuario, int _idGrupoUsuario)
         {
+            if (new UsuarioDAL().ExisteRelacionamento(_idUsuario, _idGrupoUsuario))
+                return;
+
             UsuarioDAL usuarioDAL = new UsuarioDAL();
             usuarioDAL.AdicionarGrupo(_idUsuario, _idGrupoUsuario);
         }

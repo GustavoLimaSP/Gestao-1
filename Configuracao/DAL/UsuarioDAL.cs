@@ -184,7 +184,6 @@ namespace DAL
                 cn.Close();
             }
         }
-
         public Usuario BuscarPorId(int _id)
         {
             Usuario usuario = new Usuario();
@@ -225,8 +224,11 @@ namespace DAL
                 cn.Close();
             }
         }
-
         public void AdicionarGrupo(int _idUsuario, int _idGrupoUsuario)
+        {
+            throw new NotImplementedException();
+        }
+        public bool ExisteRelacionamento(int idUsuario, int idGrupoUsuario)
         {
             throw new NotImplementedException();
         }
