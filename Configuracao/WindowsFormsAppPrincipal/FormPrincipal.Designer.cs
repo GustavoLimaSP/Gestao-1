@@ -64,32 +64,35 @@
             // usuáriosToolStripMenuItem
             // 
             this.usuáriosToolStripMenuItem.Name = "usuáriosToolStripMenuItem";
-            this.usuáriosToolStripMenuItem.Size = new System.Drawing.Size(314, 26);
+            this.usuáriosToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.U)));
+            this.usuáriosToolStripMenuItem.Size = new System.Drawing.Size(369, 26);
             this.usuáriosToolStripMenuItem.Text = "Usuários";
             this.usuáriosToolStripMenuItem.Click += new System.EventHandler(this.usuáriosToolStripMenuItem_Click);
             // 
             // gruposDeUsuáriosToolStripMenuItem
             // 
             this.gruposDeUsuáriosToolStripMenuItem.Name = "gruposDeUsuáriosToolStripMenuItem";
-            this.gruposDeUsuáriosToolStripMenuItem.Size = new System.Drawing.Size(314, 26);
+            this.gruposDeUsuáriosToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.G)));
+            this.gruposDeUsuáriosToolStripMenuItem.Size = new System.Drawing.Size(369, 26);
             this.gruposDeUsuáriosToolStripMenuItem.Text = "Grupos de usuários";
             // 
             // permissõesDeGruposDeUsuáriosToolStripMenuItem
             // 
             this.permissõesDeGruposDeUsuáriosToolStripMenuItem.Name = "permissõesDeGruposDeUsuáriosToolStripMenuItem";
-            this.permissõesDeGruposDeUsuáriosToolStripMenuItem.Size = new System.Drawing.Size(314, 26);
+            this.permissõesDeGruposDeUsuáriosToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.M)));
+            this.permissõesDeGruposDeUsuáriosToolStripMenuItem.Size = new System.Drawing.Size(369, 26);
             this.permissõesDeGruposDeUsuáriosToolStripMenuItem.Text = "Permissões de grupos de usuários";
             // 
             // clientesToolStripMenuItem
             // 
             this.clientesToolStripMenuItem.Name = "clientesToolStripMenuItem";
-            this.clientesToolStripMenuItem.Size = new System.Drawing.Size(314, 26);
+            this.clientesToolStripMenuItem.Size = new System.Drawing.Size(369, 26);
             this.clientesToolStripMenuItem.Text = "Clientes";
             // 
             // fornecedoresToolStripMenuItem
             // 
             this.fornecedoresToolStripMenuItem.Name = "fornecedoresToolStripMenuItem";
-            this.fornecedoresToolStripMenuItem.Size = new System.Drawing.Size(314, 26);
+            this.fornecedoresToolStripMenuItem.Size = new System.Drawing.Size(369, 26);
             this.fornecedoresToolStripMenuItem.Text = "Fornecedores";
             this.fornecedoresToolStripMenuItem.Click += new System.EventHandler(this.fornecedoresToolStripMenuItem_Click);
             // 

@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
+using System.Security.Cryptography;
 
 namespace DAL
 {
@@ -231,6 +232,72 @@ namespace DAL
         public bool ExisteRelacionamento(int idUsuario, int idGrupoUsuario)
         {
             throw new NotImplementedException();
+        }
+
+        public void RemoverGrupoUsuario(int _idUsuario, int _idGrupoUsuario)
+        {
+            SqlConnection cn = new SqlConnection();
+
+            try
+            {
+                cn.ConnectionString = Conexao.StringDeConexao;
+                SqlCommand cmd = new SqlCommand();
+                cmd.Connection = cn;
+                cmd.CommandText = @"DELETE FROM UsuarioGrupoUsuario 
+                                    WHERE Id_Usuario = @Id_Usuario 
+                                    AND Id_GrupoUsuario = @Id_GrupoUsuario";
+
+                cmd.CommandType = System.Data.CommandType.Text;
+                cmd.Parameters.AddWithValue("@Id_Usuario", _idUsuario);
+                cmd.Parameters.AddWithValue("@Id_GrupoUsuario", _idGrupoUsuario);
+
+                cn.Open();
+                cmd.ExecuteNonQuery();
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Ocorreu um erro ao tentar excluir um grupo do usuário no banco de dados: " + ex.Message);
+            }
+            finally
+            {
+                cn.Close();
+            }
+        }
+        public bool ValidarPermissao(int _idUsuario, int _idPermissao)
+        {
+            SqlConnection cn = new SqlConnection();
+            SqlCommand cmd = new SqlCommand();
+
+            try
+            {
+                cn.ConnectionString = Conexao.StringDeConexao;
+                cmd.Connection = cn;
+                cmd.CommandText = @"SELECT TOP 1 1 AS Resultado FROM UsuarioGrupoUsuario
+                                    INNER JOIN PermissaoGrupoUsuario 
+                                    ON UsuarioGrupoUsuario.Id_GrupoUsuario = PermissaoGrupoUsuario.Id_GrupoUsuario
+                                    WHERE UsuarioGrupoUsuario.Id_Usuario = @Id_Usuario
+                                    AND PermissaoGrupoUsuario.Id_Permissao = @Id_Permissao";
+
+                cmd.Parameters.AddWithValue("@Id_Usuario", _idUsuario);
+                cmd.Parameters.AddWithValue("@Id_Permissao", _idPermissao);
+
+                cmd.CommandType = System.Data.CommandType.Text;
+                cn.Open();
+                using (SqlDataReader rd = cmd.ExecuteReader())
+                {
+                    if (rd.Read())
+                        return true;
+                }
+                return false;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Ocorreu um erro ao tentar validar permissão do usuário: " + ex.Message);
+            }
+            finally
+            {
+                cn.Close();
+            }
         }
     }
 }

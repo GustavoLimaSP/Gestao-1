@@ -9,6 +9,8 @@ namespace BLL
     {
         public void Inserir(Usuario _usuario, string _confirmacaoDeSenha)
         {
+            ValidarPermissao(4);
+
             ValidarDados(_usuario, _confirmacaoDeSenha);
 
             Usuario usuario = new Usuario();
@@ -19,6 +21,12 @@ namespace BLL
             UsuarioDAL usuarioDAL = new UsuarioDAL();
             usuarioDAL.Inserir(_usuario);
         }
+        public void ValidarPermissao(int _idPermissao)
+        {
+            if (!new UsuarioDAL().ValidarPermissao(Constantes.IdUsuarioLogado, _idPermissao))
+                throw new Exception("Você não tem permissão para executar esta operação.");
+        }
+
         public Usuario BuscarPorNomeUsuario(string _nomeUsuario)
         {
             if (String.IsNullOrEmpty(_nomeUsuario))
@@ -73,6 +81,11 @@ namespace BLL
 
             UsuarioDAL usuarioDAL = new UsuarioDAL();
             usuarioDAL.AdicionarGrupo(_idUsuario, _idGrupoUsuario);
+        }
+
+        public void RemoverGrupoUsuario(int _idUsuario, int _idGrupoUsuario)
+        {
+            new UsuarioDAL().RemoverGrupoUsuario(_idUsuario, _idGrupoUsuario);
         }
     }
 }
