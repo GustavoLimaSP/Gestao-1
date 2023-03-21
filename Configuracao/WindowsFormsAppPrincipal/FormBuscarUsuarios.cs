@@ -13,56 +13,92 @@ namespace WindowsFormsAppPrincipal
 
         private void buttonBuscar_Click(object sender, System.EventArgs e)
         {
-            UsuarioBLL usuarioBLL = new UsuarioBLL();
-            usuarioBindingSource.DataSource = usuarioBLL.BuscarTodos();
+            try
+            {
+                UsuarioBLL usuarioBLL = new UsuarioBLL();
+                usuarioBindingSource.DataSource = usuarioBLL.BuscarTodos();
+            }
+            catch (System.Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
         }
 
         private void buttonAdicionarUsuario_Click(object sender, System.EventArgs e)
         {
-            using (FormCadastroUsuario frm = new FormCadastroUsuario())
+            try
             {
-                frm.ShowDialog();
+                new UsuarioBLL().ValidarPermissao(2);
+                using (FormCadastroUsuario frm = new FormCadastroUsuario())
+                {
+                    frm.ShowDialog();
+                }
+                buttonBuscar_Click(sender, e);
             }
-            buttonBuscar_Click(sender, e);
+            catch (System.Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
         }
 
         private void buttonAlterar_Click(object sender, System.EventArgs e)
         {
-            int id = ((Usuario)usuarioBindingSource.Current).Id;
-
-            using (FormCadastroUsuario frm = new FormCadastroUsuario(true, id))
+            try
             {
-                frm.ShowDialog();
+                int id = ((Usuario)usuarioBindingSource.Current).Id;
+
+                using (FormCadastroUsuario frm = new FormCadastroUsuario(true, id))
+                {
+                    frm.ShowDialog();
+                }
+                buttonBuscar_Click(sender, e);
             }
-            buttonBuscar_Click(sender, e);
+            catch (System.Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
         }
 
         private void buttonExcluirUsuario_Click(object sender, System.EventArgs e)
         {
-            if (usuarioBindingSource.Count <= 0)
+            try
             {
-                MessageBox.Show("Não existe registro para ser excluído.");
-                return;
+                if (usuarioBindingSource.Count <= 0)
+                {
+                    MessageBox.Show("Não existe registro para ser excluído.");
+                    return;
+                }
+
+                if (MessageBox.Show("Deseja realmente excluir este registro?", "Atenção", MessageBoxButtons.YesNo) == DialogResult.No)
+                    return;
+
+                int id = ((Usuario)usuarioBindingSource.Current).Id;
+                new UsuarioBLL().Excluir(id);
+
+                MessageBox.Show("Registro excluído com sucesso!");
+                buttonBuscar_Click(null, null);
             }
-
-            if (MessageBox.Show("Deseja realmente excluir este registro?", "Atenção", MessageBoxButtons.YesNo) == DialogResult.No)
-                return;
-
-            int id = ((Usuario)usuarioBindingSource.Current).Id;
-            new UsuarioBLL().Excluir(id);
-
-            MessageBox.Show("Registro excluído com sucesso!");
-            buttonBuscar_Click(null, null);
+            catch (System.Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
         }
 
         private void buttonAdicionarGrupoUsuario_Click(object sender, System.EventArgs e)
         {
-            using (FormConsultarGrupoUsuario frm = new FormConsultarGrupoUsuario())
+            try
             {
-                frm.ShowDialog();
-                UsuarioBLL usuarioBLL = new UsuarioBLL();
-                int idUsuario = ((Usuario)usuarioBindingSource.Current).Id;
-                usuarioBLL.AdicionarGrupo(idUsuario, frm.Id);
+                using (FormConsultarGrupoUsuario frm = new FormConsultarGrupoUsuario())
+                {
+                    frm.ShowDialog();
+                    UsuarioBLL usuarioBLL = new UsuarioBLL();
+                    int idUsuario = ((Usuario)usuarioBindingSource.Current).Id;
+                    usuarioBLL.AdicionarGrupo(idUsuario, frm.Id);
+                }
+            }
+            catch (System.Exception ex)
+            {
+                MessageBox.Show(ex.Message);
             }
         }
     }

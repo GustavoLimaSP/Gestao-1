@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Models;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -34,6 +35,8 @@ namespace WindowsFormsAppPrincipal
 
         private void FormPrincipal_Load(object sender, EventArgs e)
         {
+            Constantes.IdUsuarioLogado = 11;
+
             //using (FormLogin frm = new FormLogin())
             //{
             //    frm.ShowDialog();
@@ -42,6 +45,11 @@ namespace WindowsFormsAppPrincipal
             //        Application.Exit();
             //    }
             //}
+        }
+
+        private void cadastroToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }
